@@ -1,4 +1,4 @@
-name: pytorch-env
+name: pytorch-env-siam
 
 dependencies:
   - python=3.6
