@@ -5,11 +5,14 @@ import numpy as np
 class Config():
     training_dir = "../data/faces/training/"
     testing_dir = "../data/faces/testing/"
-    train_batch_size = 64
+
+    train_batch_size = 32
     train_number_epochs = 100
 
+    checkpoint_path = '../checkpoints/model.pt'
 
-def imshow(img,text=None,should_save=False):
+
+def imshow(img,text=None):
     npimg = img.numpy()
     plt.axis("off")
     if text:
@@ -18,6 +21,6 @@ def imshow(img,text=None,should_save=False):
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
 
-def show_plot(iteration,loss):
-    plt.plot(iteration,loss)
+def show_plot(iteration, loss):
+    plt.plot(iteration, loss)
     plt.show()

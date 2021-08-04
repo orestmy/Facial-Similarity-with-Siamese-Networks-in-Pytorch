@@ -74,6 +74,10 @@ class SoftMaxLoss(torch.nn.Module):
 
     def forward(self, output1, output2, label):
         concat = torch.cat((output1, output2), 1)
-        self.pred = self.fc(concat)
-        current_loss = self.loss(self.pred, label.squeeze().long())
+        pred = self.fc(concat)
+        self.pred = self.sigmoid(pred)
+        current_loss = self.loss(pred, label.squeeze().long())
         return current_loss
+
+    def get_accuracy(self, pred, label):
+        return torch.sum(torch.argmax(pred, dim=1) == label.squeeze()) / (label.shape[0] + 1e-6)
